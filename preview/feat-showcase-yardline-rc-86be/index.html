@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Space Console — Your TV becomes the console. Every phone becomes a controller.</title>
+  <meta name="description" content="Open a web page on the TV, scan a QR on your phone, and play. 33 in-house games, peer-to-peer input over WebRTC, nothing to install.">
+  <meta name="theme-color" content="#05060f">
+
+  <!-- Social cards must be ABSOLUTE: scrapers fetch these out of page context, so a
+       relative path silently yields no preview image. These point at the Render
+       deploy — the production console — where the bare domain redirects here and
+       the page itself is served from /landing/. Update all three together if the
+       site moves to its own domain. -->
+  <link rel="canonical" href="https://space-console.onrender.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://space-console.onrender.com/">
+  <meta property="og:site_name" content="Space Console">
+  <meta property="og:title" content="Space Console — Your TV becomes the console">
+  <meta property="og:description" content="Every phone becomes a controller. No app, no download, no account — one QR scan and you're playing.">
+  <meta property="og:image" content="https://space-console.onrender.com/landing/assets/img/tv-menu.jpg">
+  <meta property="og:image:width" content="2000">
+  <meta property="og:image:height" content="1125">
+  <meta property="og:image:alt" content="The Space Console launcher on a TV: the Tetris hero tile, category rails, room code 8VTF with a scan-to-join QR, and three seated players.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Space Console — Your TV becomes the console">
+  <meta name="twitter:description" content="Every phone becomes a controller. No app, no download, no account — one QR scan and you're playing.">
+  <meta name="twitter:image" content="https://space-console.onrender.com/landing/assets/img/tv-menu.jpg">
+
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/icon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/site.css?v=cd507dc0-bb91-43d5-ab2d-1f940eea0d67">
+</head>
+<body>
+
+  <!-- ======================================================= nav -->
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Space Console — back to top">
+        <svg class="brand-mark" viewBox="0 0 512 512" aria-hidden="true">
+          <defs>
+            <linearGradient id="mkg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#b14bff"/>
+            </linearGradient>
+          </defs>
+          <rect width="512" height="512" rx="112" fill="#05060f"/>
+          <circle cx="256" cy="256" r="150" fill="none" stroke="url(#mkg)" stroke-width="26"/>
+          <circle cx="256" cy="256" r="54" fill="url(#mkg)"/>
+          <circle cx="256" cy="92" r="20" fill="#6ce0ff"/>
+        </svg>
+        <span class="brand-word">Space Console</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#games">Games</a>
+        <a href="#hood">Under the hood</a>
+        <a href="https://github.com/space-console" rel="noopener">GitHub</a>
+      </nav>
+      <a class="btn btn-primary btn-nav" href="https://space-console.onrender.com/game-launcher-web/" rel="noopener">Open on your TV</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================================================== hero -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <p class="kicker mono reveal">A console made of web pages</p>
+          <h1 class="reveal d1">Your TV is the&nbsp;console.<br><span class="grad">Every phone is a&nbsp;controller.</span></h1>
+          <p class="lede reveal d2">Open a web page on the TV. Scan a QR on your phone. You’re holding the controller — and every press travels peer-to-peer, straight to the&nbsp;screen.</p>
+          <div class="cta-row reveal d3">
+            <a class="btn btn-primary" href="https://space-console.onrender.com/game-launcher-web/" rel="noopener">Open on your TV</a>
+            <a class="btn btn-ghost" href="#games">See the 33 games</a>
+          </div>
+          <p class="trust mono reveal d4">no app&ensp;·&ensp;no download&ensp;·&ensp;no account</p>
+        </div>
+
+        <!-- The stage: TV + live phone + the p2p beam (the signature idea).
+             Fixed 4:3 aspect so the SVG overlay coordinates always line up. -->
+        <div class="stage reveal d2" aria-label="A TV running the Space Console game menu with three players joined, and a phone controller connected to it directly">
+          <div class="tv">
+            <div class="tv-screen">
+              <img src="./assets/img/tv-menu.jpg" width="2000" height="1125" fetchpriority="high"
+                   alt="Space Console launcher on a TV: Tetris hero tile, category chips, game rails, the join bar reading space-console.onrender.com with room code 8VTF and a scan-to-join QR, and three seats filled — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
+            </div>
+            <div class="tv-foot" aria-hidden="true"></div>
+          </div>
+
+          <div class="device device-hero" aria-hidden="true">
+            <div class="device-screen">
+              <div class="pad-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
+              <svg class="screen-mark" viewBox="0 0 512 512"><circle cx="256" cy="256" r="150" fill="none" stroke="currentColor" stroke-width="26"/><circle cx="256" cy="256" r="54" fill="currentColor"/><circle cx="256" cy="92" r="20" fill="currentColor"/></svg>
+              <div class="hero-pad">
+                <div class="dpad">
+                  <span class="dk dk-u">▲</span><span class="dk dk-l">◀</span>
+                  <span class="dk dk-r">▶</span><span class="dk dk-d">▼</span>
+                </div>
+                <div class="menu-actions">
+                  <span class="pk pk-primary">Select</span><span class="pk">Back</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Signature: the live p2p link. Packets ride the path via SMIL;
+               js pauses the whole svg off-screen / under reduced motion.
+               Geometry note: the path starts under the phone (so it reads as
+               leaving it at any device width) and ends at a port dot sitting
+               on the TV frame's bottom edge, lower-left — press → screen. -->
+          <svg class="beam beam-hero" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="beamg" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#6ce0ff"/>
+              </linearGradient>
+            </defs>
+            <path id="heroPath" class="beam-under" d="M 205 470 C 272 484 316 468 340 417"/>
+            <path class="beam-line" d="M 205 470 C 272 484 316 468 340 417"/>
+            <circle class="beam-port" cx="340" cy="417" r="4"/>
+            <g class="beam-packets">
+              <circle class="pk-glow" r="7"><animateMotion dur="2.1s" repeatCount="indefinite"><mpath href="#heroPath"/></animateMotion></circle>
+              <circle class="pk-dot" r="3"><animateMotion dur="2.1s" repeatCount="indefinite"><mpath href="#heroPath"/></animateMotion></circle>
+              <!-- staggered packets start hidden: a paused/pre-begin SMIL circle
+                   would otherwise sit visible at the svg origin -->
+              <circle class="pk-dot" r="2.4" opacity="0"><animateMotion dur="2.1s" begin="0.7s" repeatCount="indefinite"><mpath href="#heroPath"/></animateMotion><animate attributeName="opacity" to="1" dur="0.01s" begin="0.7s" fill="freeze"/></circle>
+              <circle class="pk-dot" r="2.4" opacity="0"><animateMotion dur="2.1s" begin="1.4s" repeatCount="indefinite"><mpath href="#heroPath"/></animateMotion><animate attributeName="opacity" to="1" dur="0.01s" begin="1.4s" fill="freeze"/></circle>
+            </g>
+          </svg>
+          <p class="beam-tag mono" aria-hidden="true">input&ensp;·&ensp;peer-to-peer</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================== proof strip -->
+    <section class="proof" aria-label="Space Console in numbers">
+      <ul class="proof-row mono">
+        <li><b>33</b> games</li>
+        <li><b>6</b> categories</li>
+        <li><b>0</b> downloads</li>
+        <li><b>4</b> players</li>
+        <li><b>1</b> QR scan to join</li>
+        <li><b>P2P</b> input</li>
+      </ul>
+    </section>
+
+    <!-- ============================================== how it works -->
+    <section class="how" id="how">
+      <div class="section-head reveal">
+        <p class="kicker mono">How it works</p>
+        <h2>Three moves and the room is&nbsp;playing.</h2>
+      </div>
+
+      <div class="steps">
+        <div class="steps-rail" aria-hidden="true">
+          <svg viewBox="0 0 4 100" preserveAspectRatio="none">
+            <path id="railPath" d="M 2 0 L 2 100"/>
+            <circle class="pk-dot" r="1.6"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#railPath"/></animateMotion></circle>
+          </svg>
+        </div>
+
+        <article class="step reveal">
+          <span class="step-no mono" aria-hidden="true">01</span>
+          <div class="step-copy">
+            <h3>Open it on the TV</h3>
+            <p>Any smart-TV browser works — webOS, Tizen, Android&nbsp;TV, tvOS — or a laptop on HDMI, or plain desktop browser. The TV shows the game menu, a 4-character room code, and a QR.</p>
+          </div>
+          <div class="step-visual">
+            <div class="join-chip" role="img" aria-label="The join bar on the TV, showing the room code 8VTF">
+              <span class="join-label">Join at</span>
+              <span class="join-host mono">space-console.onrender.com</span>
+              <span class="join-code mono">8 V T F</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="step reveal">
+          <span class="step-no mono" aria-hidden="true">02</span>
+          <div class="step-copy">
+            <h3>Scan the code</h3>
+            <p>Guests point their camera at the QR — or type the code. A web page opens on the phone, and that page <em>is</em> the controller. No app store, no download, no account.</p>
+          </div>
+          <div class="step-visual">
+            <div class="qr-card" role="img" aria-label="A stylized scan-to-join QR code">
+              <svg class="qr-mark" viewBox="0 0 96 96" aria-hidden="true">
+                <g class="qr-cells"></g>
+                <g class="qr-eyes" fill="none" stroke-width="5">
+                  <rect x="6"  y="6"  width="22" height="22" rx="4"/>
+                  <rect x="68" y="6"  width="22" height="22" rx="4"/>
+                  <rect x="6"  y="68" width="22" height="22" rx="4"/>
+                </g>
+              </svg>
+              <span class="qr-scanline" aria-hidden="true"></span>
+              <span class="qr-caption mono">scan to join</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="step reveal">
+          <span class="step-no mono" aria-hidden="true">03</span>
+          <div class="step-copy">
+            <h3>Play</h3>
+            <p>Seats fill on the TV roster as phones connect — names typed on the phone, a crown on the lead player. Pick a game; the pad on every phone reshapes itself to&nbsp;match.</p>
+          </div>
+          <div class="step-visual">
+            <ul class="roster" role="img" aria-label="The player roster filling up: P1 Veton wearing the crown, then P2 Ana, P3 Rijad, P4 Lea">
+              <li class="seat s1"><span class="seat-no mono">P1</span> Veton <span class="crown" aria-hidden="true">♛</span></li>
+              <li class="seat s2"><span class="seat-no mono">P2</span> Ana</li>
+              <li class="seat s3"><span class="seat-no mono">P3</span> Rijad</li>
+              <li class="seat s4"><span class="seat-no mono">P4</span> Lea</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================= the controller adapts -->
+    <section class="adapt" id="adapt">
+      <div class="adapt-glow" aria-hidden="true"></div>
+      <div class="adapt-inner">
+
+        <div class="adapt-copy">
+          <p class="kicker mono reveal">The showpiece</p>
+          <h2 class="reveal d1">The controller reshapes itself for every&nbsp;game.</h2>
+          <p class="body reveal d2">Each game declares the pad it needs. The TV pushes that layout down the DataChannel and the phone re-renders instantly — flippers for pinball, an analog driving pad for the racers. Games that declare nothing fall back to the d-pad.</p>
+
+          <div class="chipset reveal d3" role="group" aria-label="Pick a game to preview its controller layout">
+            <button class="chip" type="button" data-pad="menu" aria-pressed="true">Menu</button>
+            <button class="chip" type="button" data-pad="pinball" aria-pressed="false">Pinball</button>
+            <button class="chip" type="button" data-pad="rc" aria-pressed="false">Yardline RC</button>
+            <button class="chip" type="button" data-pad="mines" aria-pressed="false">Minesweeper</button>
+            <button class="chip" type="button" data-pad="blackjack" aria-pressed="false">Blackjack</button>
+          </div>
+
+          <p class="pad-caption mono reveal d4" id="padCaption" aria-live="polite">menu&ensp;→&ensp;d-pad · Select · Back — the fallback when a game declares&nbsp;nothing</p>
+        </div>
+
+        <div class="adapt-stage reveal d2">
+          <div class="device device-live" id="liveDevice" role="img"
+               aria-label="Phone controller showing the menu layout: d-pad with Select and Back">
+            <div class="device-screen">
+              <div class="device-ui">
+                <div class="pad-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
+                <svg class="screen-mark" viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="150" fill="none" stroke="currentColor" stroke-width="26"/><circle cx="256" cy="256" r="54" fill="currentColor"/><circle cx="256" cy="92" r="20" fill="currentColor"/></svg>
+
+                <!-- what the running game declared — swapped by js with each
+                     layout, so "declare → push → re-render" stays concrete -->
+                <div class="pad-readout" id="padReadout" aria-hidden="true">
+                  <span class="ro-head mono">game declares</span>
+                  <span class="ro-row mono"><span class="ro-key">profile</span><span class="ro-val" id="roProfile">d-pad</span></span>
+                  <span class="ro-row mono"><span class="ro-key">input</span><span class="ro-val" id="roInput">select · back</span></span>
+                </div>
+
+                <div class="pad pad-menu is-on" data-pad="menu">
+                  <div class="dpad">
+                    <span class="dk dk-u">▲</span><span class="dk dk-l">◀</span>
+                    <span class="dk dk-r">▶</span><span class="dk dk-d">▼</span>
+                  </div>
+                  <div class="menu-actions">
+                    <span class="pk pk-primary">Select</span><span class="pk">Back</span>
+                  </div>
+                </div>
+
+                <div class="pad pad-pinball" data-pad="pinball">
+                  <span class="flipper fl-l"><i aria-hidden="true">◣</i>Left<em class="mono">hold</em></span>
+                  <span class="flipper fl-r"><i aria-hidden="true">◢</i>Right<em class="mono">hold</em></span>
+                </div>
+
+                <div class="pad pad-mines" data-pad="mines">
+                  <div class="dpad dpad-sm">
+                    <span class="dk dk-u">▲</span><span class="dk dk-l">◀</span>
+                    <span class="dk dk-r">▶</span><span class="dk dk-d">▼</span>
+                  </div>
+                  <div class="mine-actions">
+                    <span class="pk pk-primary">Reveal</span><span class="pk pk-flag">⚑ Flag</span>
+                  </div>
+                </div>
+
+                <div class="pad pad-blackjack" data-pad="blackjack">
+                  <div class="bj-grid">
+                    <span class="pk pk-primary">Hit</span><span class="pk">Stand</span>
+                    <span class="pk">Double</span><span class="pk">Split</span>
+                  </div>
+                </div>
+
+                <!-- rc pad is authored pre-rotated: the device rotates to
+                     landscape and this pad counter-rotates so it reads level -->
+                <div class="pad pad-rc" data-pad="rc">
+                  <div class="rc-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
+                  <div class="rc-row">
+                    <div class="stick"><span class="stick-knob"></span></div>
+                    <div class="rc-cluster">
+                      <span class="pk pk-gas">Gas</span>
+                      <span class="pk pk-brake">Brake</span>
+                      <span class="pk pk-drift">Drift</span>
+                      <!-- the three aux buttons Yardline RC declares alongside
+                           the analog profile — powerup, reset, pause -->
+                      <span class="rc-aux mono"><i>PWR</i><i>RESET</i><i>II</i></span>
+                    </div>
+                  </div>
+                  <p class="rc-hint mono">tilt steering · optional</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <svg class="beam beam-mini" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true">
+            <path id="miniPath" class="beam-line" d="M 10 30 C 70 10 130 50 190 30"/>
+            <circle class="pk-dot" r="2.4"><animateMotion dur="1.8s" repeatCount="indefinite"><mpath href="#miniPath"/></animateMotion></circle>
+          </svg>
+          <p class="beam-tag mono beam-tag-mini" aria-hidden="true">layout pushed&ensp;·&ensp;pad re-rendered</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================== library -->
+    <section class="library" id="games">
+      <div class="section-head reveal">
+        <p class="kicker mono">The library</p>
+        <h2><b class="grad">33 games.</b> Zero installs.</h2>
+        <p class="body">All built in-house, all playable. Puzzle&nbsp;5 · Arcade&nbsp;10 · Board&nbsp;&amp;&nbsp;Strategy&nbsp;8 · Cards&nbsp;4 · Casino&nbsp;4 · Party&nbsp;2.</p>
+      </div>
+
+      <div class="shelf" aria-label="Thumbnails of all 33 games">
+        <div class="marquee m1">
+          <ul class="marquee-track">
+            <li><img loading="lazy" src="./assets/thumbs/tetris.jpg" width="363" height="480" alt="Tetris"><span class="tag">Tetris</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/rc-rush.jpg" width="406" height="480" alt="RC Rush"><span class="tag">RC Rush</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/pinball.jpg" width="363" height="480" alt="Pinball"><span class="tag">Pinball</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/chess.jpg" width="371" height="480" alt="Chess"><span class="tag">Chess</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/candy-crush.jpg" width="363" height="480" alt="Candy Crush"><span class="tag">Candy Crush</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/pool.jpg" width="363" height="480" alt="8-Ball Pool"><span class="tag">8-Ball Pool</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/minesweeper.jpg" width="363" height="480" alt="Minesweeper"><span class="tag">Minesweeper</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/fruit-ninja.jpg" width="363" height="480" alt="Fruit Ninja"><span class="tag">Fruit Ninja</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/uno.jpg" width="385" height="480" alt="Uno"><span class="tag">Uno</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/space-tower.jpg" width="363" height="480" alt="Space Tower"><span class="tag">Space Tower</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/snake.jpg" width="363" height="480" alt="Snake"><span class="tag">Snake</span></li>
+          </ul>
+        </div>
+        <div class="marquee m2">
+          <ul class="marquee-track">
+            <li><img loading="lazy" src="./assets/thumbs/yardline-rc.jpg" width="363" height="480" alt="Yardline RC"><span class="tag">Yardline RC</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/blackjack.jpg" width="385" height="480" alt="Blackjack"><span class="tag">Blackjack</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/icy-tower.jpg" width="363" height="480" alt="Icy Tower"><span class="tag">Icy Tower</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/scrabble.jpg" width="379" height="480" alt="Scrabble"><span class="tag">Scrabble</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/flappy-bird.jpg" width="363" height="480" alt="Flappy Bird"><span class="tag">Flappy Bird</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/ludo.jpg" width="371" height="480" alt="Ludo"><span class="tag">Ludo</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/poker.jpg" width="385" height="480" alt="Texas Hold'em"><span class="tag">Texas Hold’em</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/block-blast.jpg" width="363" height="480" alt="Block Blast"><span class="tag">Block Blast</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/sudoku.jpg" width="363" height="480" alt="Sudoku"><span class="tag">Sudoku</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/star-hopper.jpg" width="379" height="480" alt="Star Hopper"><span class="tag">Star Hopper</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/checkers.jpg" width="371" height="480" alt="Checkers"><span class="tag">Checkers</span></li>
+          </ul>
+        </div>
+        <div class="marquee m3">
+          <ul class="marquee-track">
+            <li><img loading="lazy" src="./assets/thumbs/bubble-trouble.jpg" width="379" height="480" alt="Bubble Trouble"><span class="tag">Bubble Trouble</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/solitaire.jpg" width="382" height="480" alt="Solitaire"><span class="tag">Solitaire</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/imposter.jpg" width="379" height="480" alt="Imposter"><span class="tag">Imposter</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/yahtzee.jpg" width="363" height="480" alt="Yahtzee"><span class="tag">Yahtzee</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/slots.jpg" width="385" height="480" alt="Slots"><span class="tag">Slots</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/dominoes.jpg" width="363" height="480" alt="Dominoes"><span class="tag">Dominoes</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/tic-tac-boom.jpg" width="379" height="480" alt="Tic-Tac-Boom"><span class="tag">Tic-Tac-Boom</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/freecell.jpg" width="382" height="480" alt="FreeCell"><span class="tag">FreeCell</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/bridge.jpg" width="444" height="480" alt="Bridge"><span class="tag">Bridge</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/tic-tac-toe.jpg" width="363" height="480" alt="Tic-Tac-Toe"><span class="tag">Tic-Tac-Toe</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/video-poker.jpg" width="385" height="480" alt="Video Poker"><span class="tag">Video Poker</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== under the hood -->
+    <section class="hood" id="hood">
+      <div class="hood-inner">
+        <div class="hood-copy reveal">
+          <p class="kicker mono">Under the hood</p>
+          <h2>The server introduces you, then steps&nbsp;out.</h2>
+          <p class="body">The phone opens a WebRTC DataChannel straight to the TV. A small signaling service — <code class="mono">web-api</code> — only performs the introduction: room code, SDP/ICE handshake, done. Gameplay input never round-trips through a&nbsp;server.</p>
+
+          <ul class="hood-list">
+            <li><span class="mono hl-key">input</span>Button presses go peer-to-peer, phone → TV.</li>
+            <li><span class="mono hl-key">shell</span>Games run in a persistent iframe shell — launching, quitting and switching never drops the controller links.</li>
+            <li><span class="mono hl-key">stack</span>Zero-build, zero-framework. Plain ES modules and CSS; a static site plus one thin Node signaling service.</li>
+            <li><span class="mono hl-key">screen</span>Runs in any TV browser — webOS, Tizen, Android TV, tvOS — or any laptop or desktop.</li>
+            <li><span class="mono hl-key">fallback</span>Keyboard, TV remote and gamepad work on the console too.</li>
+          </ul>
+        </div>
+
+        <div class="hood-diagram reveal d2">
+          <svg id="hoodSvg" viewBox="0 0 720 420" role="img"
+               aria-label="Diagram: phone and TV first exchange a handshake through a small signaling service, then a direct peer-to-peer link forms and the signaling service goes idle">
+            <defs>
+              <linearGradient id="p2pg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#b14bff"/>
+              </linearGradient>
+            </defs>
+
+            <!-- handshake: dashed, via the signaling box -->
+            <g class="hs">
+              <path class="hs-line" d="M 132 300 C 180 190 260 120 330 108"/>
+              <path class="hs-line" d="M 390 108 C 460 120 540 190 588 300"/>
+              <text class="svg-mono hs-label" x="196" y="164">offer / ice</text>
+              <text class="svg-mono hs-label" x="466" y="164">answer / ice</text>
+            </g>
+
+            <!-- direct link -->
+            <g class="p2p">
+              <path id="p2pPath" class="p2p-under" d="M 150 322 C 260 380 460 380 570 322"/>
+              <path class="p2p-line" d="M 150 322 C 260 380 460 380 570 322"/>
+              <circle class="pk-glow" r="7"><animateMotion dur="1.9s" repeatCount="indefinite"><mpath href="#p2pPath"/></animateMotion></circle>
+              <circle class="pk-dot" r="3"><animateMotion dur="1.9s" repeatCount="indefinite"><mpath href="#p2pPath"/></animateMotion></circle>
+              <circle class="pk-dot" r="2.4" opacity="0"><animateMotion dur="1.9s" begin="0.63s" repeatCount="indefinite"><mpath href="#p2pPath"/></animateMotion><animate attributeName="opacity" to="1" dur="0.01s" begin="0.63s" fill="freeze"/></circle>
+              <circle class="pk-dot" r="2.4" opacity="0"><animateMotion dur="1.9s" begin="1.26s" repeatCount="indefinite"><mpath href="#p2pPath"/></animateMotion><animate attributeName="opacity" to="1" dur="0.01s" begin="1.26s" fill="freeze"/></circle>
+              <text class="svg-mono p2p-label" x="360" y="393" text-anchor="middle">webrtc datachannel · p2p</text>
+            </g>
+
+            <!-- nodes -->
+            <g class="node node-signal">
+              <rect x="300" y="66" width="120" height="54" rx="10"/>
+              <text class="svg-mono node-label" x="360" y="90" text-anchor="middle">signaling</text>
+              <text class="svg-mono node-sub"   x="360" y="107" text-anchor="middle">web-api</text>
+              <text class="svg-mono idle-tag" x="360" y="44" text-anchor="middle">idle</text>
+            </g>
+            <g class="node node-phone">
+              <rect x="84" y="252" width="76" height="128" rx="14"/>
+              <rect class="node-inner" x="92" y="262" width="60" height="96" rx="6"/>
+              <!-- hairline hint: a d-pad and two action keys, so it reads as
+                   a controller rather than an empty slab -->
+              <g class="node-hint">
+                <path d="M 122 286 v 22 M 111 297 h 22"/>
+                <circle cx="114" cy="334" r="2.6"/>
+                <circle cx="130" cy="334" r="2.6"/>
+              </g>
+              <text class="svg-mono node-label" x="122" y="404" text-anchor="middle">phone</text>
+            </g>
+            <g class="node node-tv">
+              <rect x="556" y="258" width="128" height="82" rx="8"/>
+              <rect class="node-inner" x="564" y="266" width="112" height="66" rx="4"/>
+              <!-- hairline hint: the launcher — hero bar and a rail of tiles -->
+              <g class="node-hint">
+                <rect x="573" y="275" width="52" height="8" rx="2"/>
+                <rect x="573" y="289" width="34" height="5" rx="2"/>
+                <rect x="573" y="304" width="18" height="14" rx="2"/>
+                <rect x="597" y="304" width="18" height="14" rx="2"/>
+                <rect x="621" y="304" width="18" height="14" rx="2"/>
+              </g>
+              <text class="svg-mono node-label" x="620" y="368" text-anchor="middle">tv</text>
+            </g>
+          </svg>
+          <p class="hood-phase mono" id="hoodPhase" aria-hidden="true">1 · handshake via signaling</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== room -->
+    <section class="room" id="room">
+      <div class="section-head reveal">
+        <p class="kicker mono">Party-console details</p>
+        <h2>Built for a room full of&nbsp;people.</h2>
+      </div>
+
+      <!-- proof shot: the rejoin story, photographed — not just claimed -->
+      <figure class="room-proof reveal">
+        <div class="room-shot">
+          <img loading="lazy" src="./assets/img/tv-yardline-rc.jpg" width="2000" height="1125"
+               alt="Yardline RC on the TV mid-race, leading lap 1 of 3: the HUD keeps the room chip 8VTF, a scan-to-join-or-rejoin QR, and the full roster — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
+        </div>
+        <figcaption class="mono">mid-race in yardline rc — the HUD keeps the rejoin QR, room <b>8VTF</b>, and every seat: P1&nbsp;Veton&nbsp;♛&nbsp;·&nbsp;P2&nbsp;Ana&nbsp;·&nbsp;P3&nbsp;Rijad</figcaption>
+      </figure>
+
+      <div class="tiles">
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 13.6c2.3.2 4 1.7 4.6 4.4"/></svg>
+          <h3>Roster &amp; seats</h3>
+          <p>Seats P1, P2, … fill on the TV as phones join. Names are typed on the phone; the lead player wears the crown.</p>
+        </article>
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V5.5A1.5 1.5 0 0 1 5.5 4H9"/><path d="M15 4h3.5A1.5 1.5 0 0 1 20 5.5V9"/><path d="M20 15v3.5a1.5 1.5 0 0 1-1.5 1.5H15"/><path d="M9 20H5.5A1.5 1.5 0 0 1 4 18.5V15"/><path d="M8 12h8"/></svg>
+          <h3>Scan to rejoin mid-game</h3>
+          <p>The in-game HUD keeps a room-code chip with a QR. A dropped phone rescans and takes its seat back — nobody leaves the game. Blips auto-rejoin silently.</p>
+        </article>
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M12 6v12"/><circle cx="7.5" cy="12" r="1.4"/><circle cx="16.5" cy="12" r="1.4"/></svg>
+          <h3>2-player same-screen</h3>
+          <p>Pool, Chess, Checkers, Tic-Tac-Toe, Scrabble, Space Tower, Tic-Tac-Boom and Bridge seat two players on one TV.</p>
+        </article>
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 20h8"/><path d="M12 16v4"/><path d="M6 4h12v5a6 6 0 0 1-12 0Z"/><path d="M6 6H4a2 2 0 0 0 2 4"/><path d="M18 6h2a2 2 0 0 1-2 4"/></svg>
+          <h3>High scores kept</h3>
+          <p>High scores and play stats persist server-side, so the leaderboard survives the night — and the next one.</p>
+        </article>
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="11.5" rx="1.5"/><path d="M8 20.5h8"/><path d="M12 16.5v4"/></svg>
+          <h3>A true 10-foot UI</h3>
+          <p>Fluid type from laptop to 4K, TV-safe overscan margins, spatial navigation with a remote — and a dark palette on purpose, because bright areas bloom on TV backlights.</p>
+        </article>
+        <article class="tile reveal">
+          <svg class="tile-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7.5" y="2.5" width="9" height="19" rx="2"/><path d="M11 19h2"/><path d="M2.5 12h5"/><path d="M16.5 12h5"/><path d="m5 9.5 2.5 2.5L5 14.5"/><path d="m19 9.5-2.5 2.5 2.5 2.5"/></svg>
+          <h3>Any screen works</h3>
+          <p>Not an app, not a download, not an account. It’s a web page you open on a screen — any screen with a browser.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================================= final cta -->
+    <section class="finale">
+      <div class="finale-glow" aria-hidden="true"></div>
+      <p class="kicker mono reveal">Tonight, on the biggest screen in the house</p>
+      <div class="finale-code mono reveal d1" id="finaleCode" aria-label="Room code 8VTF">
+        <span data-ch="2">2</span><span data-ch="X">X</span><span data-ch="Y">Y</span><span data-ch="Z">Z</span>
+      </div>
+      <h2 class="reveal d2">The room is open.</h2>
+      <p class="body reveal d3">One web page on the TV, one scan on every phone.<br>Nothing to install — for you or your guests.</p>
+      <a class="btn btn-primary btn-big reveal d4" href="https://space-console.onrender.com/game-launcher-web/" rel="noopener">Open Space Console on your TV</a>
+    </section>
+
+  </main>
+
+  <!-- ==================================================== footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/icons/icon.svg" width="28" height="28" alt="Space Console logo">
+        <div>
+          <p class="footer-name">Space Console</p>
+          <p class="footer-line">Your TV becomes the console. Everyone’s phone becomes a controller. Nothing to install.</p>
+        </div>
+      </div>
+      <nav class="footer-repos mono" aria-label="Repositories">
+        <a href="https://github.com/space-console/game-launcher-web" rel="noopener">game-launcher-web</a>
+        <a href="https://github.com/space-console/game-controller" rel="noopener">game-controller</a>
+        <a href="https://github.com/space-console/games" rel="noopener">games</a>
+        <a href="https://github.com/space-console/web-api" rel="noopener">web-api</a>
+        <a href="https://github.com/space-console/wiki" rel="noopener">wiki</a>
+      </nav>
+    </div>
+    <p class="colophon mono">33 games, built in-house · plain ES modules, no bundler · input travels peer-to-peer</p>
+  </footer>
+
+  <script type="module" src="./assets/js/site.js?v=cd507dc0-bb91-43d5-ab2d-1f940eea0d67"></script>
+</body>
+</html>
