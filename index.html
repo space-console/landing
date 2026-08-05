@@ -21,7 +21,7 @@
   <meta property="og:image" content="https://space-console.onrender.com/landing/assets/img/tv-menu.jpg">
   <meta property="og:image:width" content="2000">
   <meta property="og:image:height" content="1125">
-  <meta property="og:image:alt" content="The Space Console launcher on a TV: the Tetris hero tile, category rails, room code 3WGL with a scan-to-join QR, and three seated players.">
+  <meta property="og:image:alt" content="The Space Console launcher on a TV: the Tetris hero tile, category rails, room code 8VTF with a scan-to-join QR, and three seated players.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Space Console — Your TV becomes the console">
   <meta name="twitter:description" content="Every phone becomes a controller. No app, no download, no account — one QR scan and you're playing.">
@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./assets/css/site.css?v=de91836b-b3d5-45ca-af81-438e2e280ae0">
+  <link rel="stylesheet" href="./assets/css/site.css?v=e060e52a-b5a0-44c6-85e2-624dfee76245">
 </head>
 <body>
 
@@ -88,14 +88,14 @@
           <div class="tv">
             <div class="tv-screen">
               <img src="./assets/img/tv-menu.jpg" width="2000" height="1125" fetchpriority="high"
-                   alt="Space Console launcher on a TV: Tetris hero tile, category chips, game rails, the join bar reading space-console.onrender.com with room code 3WGL and a scan-to-join QR, and three seats filled — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
+                   alt="Space Console launcher on a TV: Tetris hero tile, category chips, game rails, the join bar reading space-console.onrender.com with room code 8VTF and a scan-to-join QR, and three seats filled — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
             </div>
             <div class="tv-foot" aria-hidden="true"></div>
           </div>
 
           <div class="device device-hero" aria-hidden="true">
             <div class="device-screen">
-              <div class="pad-status"><span>Room <b>3WGL</b></span><span class="pad-leave">Leave</span></div>
+              <div class="pad-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
               <svg class="screen-mark" viewBox="0 0 512 512"><circle cx="256" cy="256" r="150" fill="none" stroke="currentColor" stroke-width="26"/><circle cx="256" cy="256" r="54" fill="currentColor"/><circle cx="256" cy="92" r="20" fill="currentColor"/></svg>
               <div class="hero-pad">
                 <div class="dpad">
@@ -172,10 +172,10 @@
             <p>Any smart-TV browser works — webOS, Tizen, Android&nbsp;TV, tvOS — or a laptop on HDMI, or plain desktop browser. The TV shows the game menu, a 4-character room code, and a QR.</p>
           </div>
           <div class="step-visual">
-            <div class="join-chip" role="img" aria-label="The join bar on the TV, showing the room code 3WGL">
+            <div class="join-chip" role="img" aria-label="The join bar on the TV, showing the room code 8VTF">
               <span class="join-label">Join at</span>
               <span class="join-host mono">space-console.onrender.com</span>
-              <span class="join-code mono">3 W G L</span>
+              <span class="join-code mono">8 V T F</span>
             </div>
           </div>
         </article>
@@ -233,7 +233,7 @@
           <div class="chipset reveal d3" role="group" aria-label="Pick a game to preview its controller layout">
             <button class="chip" type="button" data-pad="menu" aria-pressed="true">Menu</button>
             <button class="chip" type="button" data-pad="pinball" aria-pressed="false">Pinball</button>
-            <button class="chip" type="button" data-pad="rc" aria-pressed="false">RC Rush</button>
+            <button class="chip" type="button" data-pad="rc" aria-pressed="false">Yardline RC</button>
             <button class="chip" type="button" data-pad="mines" aria-pressed="false">Minesweeper</button>
             <button class="chip" type="button" data-pad="blackjack" aria-pressed="false">Blackjack</button>
           </div>
@@ -246,7 +246,7 @@
                aria-label="Phone controller showing the menu layout: d-pad with Select and Back">
             <div class="device-screen">
               <div class="device-ui">
-                <div class="pad-status"><span>Room <b>3WGL</b></span><span class="pad-leave">Leave</span></div>
+                <div class="pad-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
                 <svg class="screen-mark" viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="150" fill="none" stroke="currentColor" stroke-width="26"/><circle cx="256" cy="256" r="54" fill="currentColor"/><circle cx="256" cy="92" r="20" fill="currentColor"/></svg>
 
                 <!-- what the running game declared — swapped by js with each
@@ -292,13 +292,16 @@
                 <!-- rc pad is authored pre-rotated: the device rotates to
                      landscape and this pad counter-rotates so it reads level -->
                 <div class="pad pad-rc" data-pad="rc">
-                  <div class="rc-status"><span>Room <b>3WGL</b></span><span class="pad-leave">Leave</span></div>
+                  <div class="rc-status"><span>Room <b>8VTF</b></span><span class="pad-leave">Leave</span></div>
                   <div class="rc-row">
                     <div class="stick"><span class="stick-knob"></span></div>
                     <div class="rc-cluster">
                       <span class="pk pk-gas">Gas</span>
                       <span class="pk pk-brake">Brake</span>
                       <span class="pk pk-drift">Drift</span>
+                      <!-- the three aux buttons Yardline RC declares alongside
+                           the analog profile — powerup, reset, pause -->
+                      <span class="rc-aux mono"><i>PWR</i><i>RESET</i><i>II</i></span>
                     </div>
                   </div>
                   <p class="rc-hint mono">tilt steering · optional</p>
@@ -333,7 +336,7 @@
             <li><img loading="lazy" src="./assets/thumbs/pinball.jpg" width="363" height="480" alt="Pinball"><span class="tag">Pinball</span></li>
             <li><img loading="lazy" src="./assets/thumbs/chess.jpg" width="371" height="480" alt="Chess"><span class="tag">Chess</span></li>
             <li><img loading="lazy" src="./assets/thumbs/candy-crush.jpg" width="363" height="480" alt="Candy Crush"><span class="tag">Candy Crush</span></li>
-            <li><img loading="lazy" src="./assets/thumbs/pool.jpg" width="480" height="270" alt="8-Ball Pool"><span class="tag">8-Ball Pool</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/pool.jpg" width="363" height="480" alt="8-Ball Pool"><span class="tag">8-Ball Pool</span></li>
             <li><img loading="lazy" src="./assets/thumbs/minesweeper.jpg" width="363" height="480" alt="Minesweeper"><span class="tag">Minesweeper</span></li>
             <li><img loading="lazy" src="./assets/thumbs/fruit-ninja.jpg" width="363" height="480" alt="Fruit Ninja"><span class="tag">Fruit Ninja</span></li>
             <li><img loading="lazy" src="./assets/thumbs/uno.jpg" width="385" height="480" alt="Uno"><span class="tag">Uno</span></li>
@@ -343,7 +346,7 @@
         </div>
         <div class="marquee m2">
           <ul class="marquee-track">
-            <li><img loading="lazy" src="./assets/thumbs/yardline-rc.jpg" width="480" height="270" alt="Yardline RC"><span class="tag">Yardline RC</span></li>
+            <li><img loading="lazy" src="./assets/thumbs/yardline-rc.jpg" width="363" height="480" alt="Yardline RC"><span class="tag">Yardline RC</span></li>
             <li><img loading="lazy" src="./assets/thumbs/blackjack.jpg" width="385" height="480" alt="Blackjack"><span class="tag">Blackjack</span></li>
             <li><img loading="lazy" src="./assets/thumbs/icy-tower.jpg" width="363" height="480" alt="Icy Tower"><span class="tag">Icy Tower</span></li>
             <li><img loading="lazy" src="./assets/thumbs/scrabble.jpg" width="379" height="480" alt="Scrabble"><span class="tag">Scrabble</span></li>
@@ -467,10 +470,10 @@
       <!-- proof shot: the rejoin story, photographed — not just claimed -->
       <figure class="room-proof reveal">
         <div class="room-shot">
-          <img loading="lazy" src="./assets/img/tv-rc-rush.jpg" width="2000" height="1125"
-               alt="RC Rush on the TV mid-game: the HUD keeps the room chip 3WGL, a scan-to-join-or-rejoin QR, and the full roster — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
+          <img loading="lazy" src="./assets/img/tv-yardline-rc.jpg" width="2000" height="1125"
+               alt="Yardline RC on the TV mid-race, leading lap 1 of 3: the HUD keeps the room chip 8VTF, a scan-to-join-or-rejoin QR, and the full roster — P1 Veton wearing the crown, P2 Ana, P3 Rijad">
         </div>
-        <figcaption class="mono">mid-game in rc rush — the HUD keeps the rejoin QR, room <b>3WGL</b>, and every seat: P1&nbsp;Veton&nbsp;♛&nbsp;·&nbsp;P2&nbsp;Ana&nbsp;·&nbsp;P3&nbsp;Rijad</figcaption>
+        <figcaption class="mono">mid-race in yardline rc — the HUD keeps the rejoin QR, room <b>8VTF</b>, and every seat: P1&nbsp;Veton&nbsp;♛&nbsp;·&nbsp;P2&nbsp;Ana&nbsp;·&nbsp;P3&nbsp;Rijad</figcaption>
       </figure>
 
       <div class="tiles">
@@ -511,7 +514,7 @@
     <section class="finale">
       <div class="finale-glow" aria-hidden="true"></div>
       <p class="kicker mono reveal">Tonight, on the biggest screen in the house</p>
-      <div class="finale-code mono reveal d1" id="finaleCode" aria-label="Room code 3WGL">
+      <div class="finale-code mono reveal d1" id="finaleCode" aria-label="Room code 8VTF">
         <span data-ch="2">2</span><span data-ch="X">X</span><span data-ch="Y">Y</span><span data-ch="Z">Z</span>
       </div>
       <h2 class="reveal d2">The room is open.</h2>
@@ -542,6 +545,6 @@
     <p class="colophon mono">33 games, built in-house · plain ES modules, no bundler · input travels peer-to-peer</p>
   </footer>
 
-  <script type="module" src="./assets/js/site.js?v=de91836b-b3d5-45ca-af81-438e2e280ae0"></script>
+  <script type="module" src="./assets/js/site.js?v=e060e52a-b5a0-44c6-85e2-624dfee76245"></script>
 </body>
 </html>
