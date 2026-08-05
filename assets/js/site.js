@@ -50,11 +50,11 @@ onScroll();
 
 /* -------------------------------------------------- stylized QR */
 /* Fill the step-2 QR with a deterministic cell pattern (a hash of
-   "3WGL") so it draws no request and always renders the same.     */
+   "8VTF") so it draws no request and always renders the same.     */
 {
   const cells = document.querySelector('.qr-cells');
   if (cells) {
-    let seed = 0x3258595a; // "3WGL"
+    let seed = 0x3258595a; // "8VTF"
     const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
     const svgNS = 'http://www.w3.org/2000/svg';
     const frag = document.createDocumentFragment();
@@ -92,8 +92,8 @@ onScroll();
     pinball:   { cap: `pinball → two held flipper buttons, left${NB}and${NB}right`,
                  ro:  ['flippers', 'left · right · hold'],
                  aria: 'Phone controller showing the pinball layout: two large hold buttons for the left and right flippers' },
-    rc:        { cap: `rc rush → landscape driving pad: stick · gas · brake · drift, streamed as continuous${NB}frames`,
-                 ro:  ['driving', 'stick · gas · brake · drift'],
+    rc:        { cap: `yardline rc → landscape driving pad: stick · gas · brake · drift, streamed as continuous${NB}frames`,
+                 ro:  ['analog', 'stick · gas · brake · drift'],
                  aria: 'Phone rotated to landscape showing the driving pad: steering joystick with gas, brake and drift buttons' },
     mines:     { cap: `minesweeper → Reveal + Flag over a compact${NB}d-pad`,
                  ro:  ['d-pad', 'reveal · flag'],
